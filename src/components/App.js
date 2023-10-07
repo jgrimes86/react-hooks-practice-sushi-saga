@@ -20,10 +20,14 @@ function App() {
     setMoney((money) => money-price)
   }
 
+  function addMoney(input) {
+    setMoney((money) => {return money+input})
+  }
+
   return (
     <div className="app">
       <SushiContainer availableSushi={availableSushi} eatSushi={eatSushi} money={money} />
-      <Table plates={plates} money={money} />
+      <Table plates={plates} money={money} addMoney={addMoney}/>
     </div>
   );
 }

@@ -12,13 +12,20 @@ body {
   grid-template-areas:
     ". . . . ."
     ". bt bt bt ."
-    ". . rm . ."
+    ". ra . rb ."
     ". tb tb tb .";
 }
 
 .remaining {
-  grid-area: rm;
+  grid-area: ra;
   margin: auto;
+}
+
+.add-money {
+  grid-area: rb;
+  margin: auto;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 .plate {
