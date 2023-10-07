@@ -16,12 +16,8 @@ function App() {
     }, [])
 
   function eatSushi (name, price) {
-    if (money > price) {
-      return (
-        setPlates((plates) => [...plates, name]),
-        setMoney((money) => money-price)
-      )
-    }
+    setPlates((plates) => [...plates, name]);
+    setMoney((money) => money-price)
   }
 
   return (

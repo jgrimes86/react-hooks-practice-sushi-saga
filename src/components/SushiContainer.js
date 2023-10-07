@@ -9,7 +9,7 @@ function SushiContainer(props) {
   function moreSushi() {
     setCurrentIndex((currentIndex) => currentIndex+4);
   }
-  console.log("current index: ", currentIndex)
+  // console.log("current index: ", currentIndex)
 
   const fourSushis = availableSushi.slice(currentIndex, currentIndex+4)
   
