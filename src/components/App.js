@@ -9,16 +9,30 @@ function App() {
   const [plates, setPlates] = useState([])
   const [money, setMoney] = useState(50)
 
-  useEffect(() => {
+  useEffect(fetchAvailableSushi, [])
+  
+  function fetchAvailableSushi() {
     fetch(API)
     .then(response => response.json())
     .then(sushi => setAvailableSushi(sushi))
-    }, [])
-
-  function eatSushi (name, price) {
-    setPlates((plates) => [...plates, name]);
-    setMoney((money) => money-price)
   }
+
+  function alterAvailableSushi(sushi) {
+    const newAvailableSushi = availableSushi.map((oneSushi) => {
+      if (oneSushi.id === sushi.id) {
+        oneSushi.img_url = null
+        return oneSushi
+      } else {return oneSushi}
+    })
+    setAvailableSushi(newAvailableSushi)
+  }
+
+  function eatSushi (sushi) {
+    setPlates((plates) => [...plates, sushi.name]);
+    setMoney((money) => money-sushi.price);
+    alterAvailableSushi(sushi)
+  }
+  // console.log(availableSushi)
 
   function addMoney(input) {
     setMoney((money) => {return money+input})
