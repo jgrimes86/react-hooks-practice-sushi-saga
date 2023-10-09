@@ -3,7 +3,7 @@ import MoreButton from "./MoreButton";
 import Sushi from "./Sushi";
 
 function SushiContainer(props) {
-  const {availableSushi, eatSushi, money} = props;
+  const {availableSushi, eatSushi, money, eatenSushi} = props;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function moreSushi() {
@@ -16,10 +16,9 @@ function SushiContainer(props) {
   console.log("current index: ", currentIndex)
 
   const fourSushis = availableSushi.slice(currentIndex, currentIndex+4)
-  // console.log(fourSushis)
   
   const sushiDisplay = fourSushis.map((sushi) => {
-    return <Sushi key={sushi.id} sushi={sushi} eatSushi={eatSushi} money={money} />
+    return <Sushi key={sushi.id} sushi={sushi} eatSushi={eatSushi} money={money} eatenSushi={eatenSushi} />
   })
 
   return (

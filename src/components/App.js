@@ -6,8 +6,9 @@ const API = "http://localhost:3001/sushis";
 
 function App() {
   const [availableSushi, setAvailableSushi] = useState([]);
-  const [plates, setPlates] = useState([])
-  const [money, setMoney] = useState(50)
+  const [plates, setPlates] = useState([]);
+  const [money, setMoney] = useState(50);
+  const [eatenSushi, setEatenSushi] = useState([]);
 
   useEffect(fetchAvailableSushi, [])
   
@@ -17,22 +18,11 @@ function App() {
     .then(sushi => setAvailableSushi(sushi))
   }
 
-  function alterAvailableSushi(sushi) {
-    const newAvailableSushi = availableSushi.map((oneSushi) => {
-      if (oneSushi.id === sushi.id) {
-        oneSushi.img_url = null
-        return oneSushi
-      } else {return oneSushi}
-    })
-    setAvailableSushi(newAvailableSushi)
-  }
-
   function eatSushi (sushi) {
     setPlates((plates) => [...plates, sushi.name]);
     setMoney((money) => money-sushi.price);
-    alterAvailableSushi(sushi)
+    setEatenSushi([...eatenSushi, sushi])
   }
-  // console.log(availableSushi)
 
   function addMoney(input) {
     setMoney((money) => {return money+input})
@@ -40,7 +30,7 @@ function App() {
 
   return (
     <div className="app">
-      <SushiContainer availableSushi={availableSushi} eatSushi={eatSushi} money={money} />
+      <SushiContainer availableSushi={availableSushi} eatSushi={eatSushi} money={money} eatenSushi={eatenSushi} />
       <Table plates={plates} money={money} addMoney={addMoney}/>
     </div>
   );
